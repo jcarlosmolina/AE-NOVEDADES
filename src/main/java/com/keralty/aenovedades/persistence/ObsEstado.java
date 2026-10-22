@@ -12,6 +12,7 @@ import com.keralty.aenovedades.global.ObsEstadoConstants;
 import com.keralty.aenovedades.persistence.oid.DocumentoGOid;
 import com.keralty.aenovedades.persistence.oid.FuncionarioOid;
 import com.keralty.aenovedades.persistence.oid.ObsEstadoOid;
+import com.keralty.aenovedades.utils.Utilities;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -570,7 +571,7 @@ public class ObsEstado extends AbstractAppEntity {
             DocumentoG.Solicitud.Agente = agent OR DocumentoG.Solicitud.Agente.CodJefe = Agent.Usuario
             */
             try {
-                if (this.getDocumentoG().getSolicitud().getAgente().equalsObject(agentInstance) || (this.getDocumentoG().getSolicitud().getAgente().getFuncionarioCodJefe()).equals(agentInstance.getFuncionarioUsuario())) {
+                if (Utilities.isEqual(this.getDocumentoG().getSolicitud().getAgente(), agentInstance) || (this.getDocumentoG().getSolicitud().getAgente().getFuncionarioCodJefe()).equals(agentInstance.getFuncionarioUsuario())) {
                     returnValue = true;
                 }
             } catch (Exception e) {

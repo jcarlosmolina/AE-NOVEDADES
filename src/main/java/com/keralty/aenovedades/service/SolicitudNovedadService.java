@@ -68,6 +68,7 @@ import com.keralty.aenovedades.sqlutils.SQLWhereOperandOVParameter;
 import com.keralty.aenovedades.sqlutils.SQLWhereOperandPathAttribute;
 import com.keralty.aenovedades.sqlutils.SQLWhereOperandPathInstance;
 import com.keralty.aenovedades.sqlutils.SQLWhereOperandSubQuery;
+import com.keralty.aenovedades.utils.Utilities;
 import com.keralty.aenovedades.viewmodel.FilterRequest;
 import com.keralty.aenovedades.viewmodel.FilterVariableRequest;
 import com.keralty.aenovedades.viewmodel.InstanceResponseViewModel;
@@ -5354,7 +5355,7 @@ public class SolicitudNovedadService extends AbstractService {
         SolicitudNovedad instance = solicitudNovedadTCHGNUEVAPERIODICIDADpthisSolicitudNovedad;
 
         /* Action 1: IF (ptPeriodicidad <> PeriodicidadNueva) */
-        boolean ifCondition1 = !(solicitudNovedadTCHGNUEVAPERIODICIDADptPeriodicidad.equalsObject(solicitudNovedadTCHGNUEVAPERIODICIDADpthisSolicitudNovedad.getPeriodicidadNueva()));
+        boolean ifCondition1 = !Utilities.isEqual(solicitudNovedadTCHGNUEVAPERIODICIDADptPeriodicidad, solicitudNovedadTCHGNUEVAPERIODICIDADpthisSolicitudNovedad.getPeriodicidadNueva());
         if (ifCondition1) {
             /* Action 10: IF (EXIST (PeriodicidadNueva) = true) */
             boolean ifCondition10 = repository.assocOperator034(solicitudNovedadTCHGNUEVAPERIODICIDADpthisSolicitudNovedad).equals(true);
@@ -5422,7 +5423,7 @@ public class SolicitudNovedadService extends AbstractService {
 
         Periodicidad solicitudNovedadTCHGNUEVAPERIODICIDADptPeriodicidad = request.getSolicitudNovedadTCHGNUEVAPERIODICIDADptPeriodicidadInstance();
         SolicitudNovedad solicitudNovedadTCHGNUEVAPERIODICIDADpthisSolicitudNovedad = request.getSolicitudNovedadTCHGNUEVAPERIODICIDADpthisSolicitudNovedadInstance();
-        boolean preconditionHolds = !(solicitudNovedadTCHGNUEVAPERIODICIDADptPeriodicidad.equalsObject(solicitudNovedadTCHGNUEVAPERIODICIDADpthisSolicitudNovedad.getPeriodicidadNueva()));
+        boolean preconditionHolds = !Utilities.isEqual(solicitudNovedadTCHGNUEVAPERIODICIDADptPeriodicidad, solicitudNovedadTCHGNUEVAPERIODICIDADpthisSolicitudNovedad.getPeriodicidadNueva());
         if (!preconditionHolds) throw new PreconditionException("La periodicidad introducida es la misma que ya tiene el contrato. Debe indicar otra periodicidad");
     }
 
@@ -6288,7 +6289,7 @@ public class SolicitudNovedadService extends AbstractService {
         SolicitudNovedad instance = solicitudNovedadTASGUSRAFILIpthisSolicitudNovedad;
 
         /* Action 1: IF (UsrAfiliacion <> ptFuncionario) */
-        boolean ifCondition1 = !(solicitudNovedadTASGUSRAFILIpthisSolicitudNovedad.getUsrAfiliacion().equalsObject(solicitudNovedadTASGUSRAFILIptFuncionario));
+        boolean ifCondition1 = !Utilities.isEqual(solicitudNovedadTASGUSRAFILIpthisSolicitudNovedad.getUsrAfiliacion(), solicitudNovedadTASGUSRAFILIptFuncionario);
         if (ifCondition1) {
             /* Action 10: IF (EXIST (UsrAfiliacion) = true) */
             boolean ifCondition10 = repository.assocOperator041(solicitudNovedadTASGUSRAFILIpthisSolicitudNovedad).equals(true);
@@ -6454,7 +6455,7 @@ public class SolicitudNovedadService extends AbstractService {
         SolicitudNovedad instance = solicitudNovedadTREASIGNARUSUARIOSpthisSolicitudNovedad;
 
         /* Action 1: IF (ptUsrAfiliacion <> NULL AND UsrAfiliacion <> ptUsrAfiliacion) */
-        boolean ifCondition1 = (solicitudNovedadTREASIGNARUSUARIOSptUsrAfiliacion != null && !solicitudNovedadTREASIGNARUSUARIOSptUsrAfiliacion.isNull()) && !(solicitudNovedadTREASIGNARUSUARIOSpthisSolicitudNovedad.getUsrAfiliacion().equalsObject(solicitudNovedadTREASIGNARUSUARIOSptUsrAfiliacion));
+        boolean ifCondition1 = (solicitudNovedadTREASIGNARUSUARIOSptUsrAfiliacion != null && !solicitudNovedadTREASIGNARUSUARIOSptUsrAfiliacion.isNull()) && !Utilities.isEqual(solicitudNovedadTREASIGNARUSUARIOSpthisSolicitudNovedad.getUsrAfiliacion(), solicitudNovedadTREASIGNARUSUARIOSptUsrAfiliacion);
         if (ifCondition1) {
             com.keralty.aenovedades.viewmodel.solicitudnovedad.siu.TASGUSRAFILIRequest step10Request = new com.keralty.aenovedades.viewmodel.solicitudnovedad.siu.TASGUSRAFILIRequest();
             step10Request.setSolicitudNovedadTASGUSRAFILIpthisSolicitudNovedadInstance(solicitudNovedadTREASIGNARUSUARIOSpthisSolicitudNovedad);

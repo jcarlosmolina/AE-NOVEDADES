@@ -52,6 +52,7 @@ import com.keralty.aenovedades.service.MotivoExcepcionSolNovService;
 import com.keralty.aenovedades.service.NovedadService;
 import com.keralty.aenovedades.service.PlanesService;
 import com.keralty.aenovedades.service.ProteccionDatosService;
+import com.keralty.aenovedades.utils.Utilities;
 import io.quarkus.arc.Arc;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -4590,7 +4591,7 @@ Este derivado sirve para:
             (Agente = agent OR Agente.CodJefe = Agent.Usuario OR EXIST( UsrAfiliacion ) WHERE (UsrAfiliacion = agent) = true)
             */
             try {
-                if ((this.getAgente().equalsObject(agentInstance) || (this.getAgente().getFuncionarioCodJefe()).equals(agentInstance.getFuncionarioUsuario()) || getSolicitudNovedadRepository().assocOperator000().equals(true))) {
+                if ((Utilities.isEqual(this.getAgente(), agentInstance) || (this.getAgente().getFuncionarioCodJefe()).equals(agentInstance.getFuncionarioUsuario()) || getSolicitudNovedadRepository().assocOperator000().equals(true))) {
                     returnValue = true;
                 }
             } catch (Exception e) {
@@ -4608,7 +4609,7 @@ Este derivado sirve para:
 COUNT( PlanT.Afiliaciones ) WHERE (PlanT.Afiliaciones = AGENT) > 0
             */
             try {
-                if (this.getUsrAfiliacion().equalsObject(agentInstance) && getSolicitudNovedadRepository().assocOperator001() > Long.valueOf(0)) {
+                if (Utilities.isEqual(this.getUsrAfiliacion(), agentInstance) && getSolicitudNovedadRepository().assocOperator001() > Long.valueOf(0)) {
                     returnValue = true;
                 }
             } catch (Exception e) {

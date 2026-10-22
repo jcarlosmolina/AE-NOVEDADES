@@ -24,6 +24,7 @@ import com.keralty.aenovedades.persistence.oid.SucursalOid;
 import com.keralty.aenovedades.repository.FirmaJpaRepository;
 import com.keralty.aenovedades.repository.RespRegionalJpaRepository;
 import com.keralty.aenovedades.service.RegionalService;
+import com.keralty.aenovedades.utils.Utilities;
 import io.quarkus.arc.Arc;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -1881,7 +1882,7 @@ RADIO=1;
             AGENT = THIS
             */
             try {
-                if (agentInstance.equalsObject(this)) {
+                if (Utilities.isEqual(agentInstance, this)) {
                     returnValue = true;
                 }
             } catch (Exception e) {

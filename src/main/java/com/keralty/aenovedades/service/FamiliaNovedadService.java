@@ -39,6 +39,7 @@ import com.keralty.aenovedades.sqlutils.SQLSelect;
 import com.keralty.aenovedades.sqlutils.SQLWhereComparison;
 import com.keralty.aenovedades.sqlutils.SQLWhereOperandLiteral;
 import com.keralty.aenovedades.sqlutils.SQLWhereOperandPathAttribute;
+import com.keralty.aenovedades.utils.Utilities;
 import com.keralty.aenovedades.viewmodel.FilterRequest;
 import com.keralty.aenovedades.viewmodel.FilterVariableRequest;
 import com.keralty.aenovedades.viewmodel.InstanceResponseViewModel;
@@ -2827,7 +2828,7 @@ public class FamiliaNovedadService extends AbstractService {
         familiaNovedadSrv.modificarImplementation(step1Request);
 
         /* Action 2: IF (TipoIdentificacion <> ptTipoIdentificacion) */
-        boolean ifCondition2 = !(familiaNovedadTMODIFICARMANUALpthisFamiliaNovedad.getTipoIdentificacion().equalsObject(familiaNovedadTMODIFICARMANUALptTipoIdentificacion));
+        boolean ifCondition2 = !Utilities.isEqual(familiaNovedadTMODIFICARMANUALpthisFamiliaNovedad.getTipoIdentificacion(), familiaNovedadTMODIFICARMANUALptTipoIdentificacion);
         if (ifCondition2) {
             /* Action 20: IF (EXIST (TipoIdentificacion) = true) */
             boolean ifCondition20 = repository.assocOperator053(familiaNovedadTMODIFICARMANUALpthisFamiliaNovedad).equals(true);

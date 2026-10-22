@@ -39,6 +39,7 @@ import com.keralty.aenovedades.sqlutils.SQLWhereOperandLiteral;
 import com.keralty.aenovedades.sqlutils.SQLWhereOperandOVParameter;
 import com.keralty.aenovedades.sqlutils.SQLWhereOperandPathAttribute;
 import com.keralty.aenovedades.sqlutils.SQLWhereOperandPathInstance;
+import com.keralty.aenovedades.utils.Utilities;
 import com.keralty.aenovedades.viewmodel.FilterRequest;
 import com.keralty.aenovedades.viewmodel.FilterVariableRequest;
 import com.keralty.aenovedades.viewmodel.InstanceResponseViewModel;
@@ -2469,7 +2470,7 @@ public class UsuarioNovedadService extends AbstractService {
         UsuarioNovedad instance = usuarioNovedadTCAMBIARPARENTESCOpthisUsuarioNovedad;
 
         /* Action 1: IF (ParentescoNuevo <> ptpevcParentesco) */
-        boolean ifCondition1 = !(usuarioNovedadTCAMBIARPARENTESCOpthisUsuarioNovedad.getParentescoNuevo().equalsObject(usuarioNovedadTCAMBIARPARENTESCOptpevcParentesco));
+        boolean ifCondition1 = !Utilities.isEqual(usuarioNovedadTCAMBIARPARENTESCOpthisUsuarioNovedad.getParentescoNuevo(), usuarioNovedadTCAMBIARPARENTESCOptpevcParentesco);
         if (ifCondition1) {
             /* Action 10: IF (EXIST (ParentescoNuevo) = true) */
             boolean ifCondition10 = repository.assocOperator029(usuarioNovedadTCAMBIARPARENTESCOpthisUsuarioNovedad).equals(true);
@@ -2585,7 +2586,7 @@ public class UsuarioNovedadService extends AbstractService {
         UsuarioNovedad instance = usuarioNovedadTCAMBIARTIPOIDENTpthisUsuarioNovedad;
 
         /* Action 1: IF (TipoIdentificacionCD <> ptpevcTipoIdentificacion) */
-        boolean ifCondition1 = !(usuarioNovedadTCAMBIARTIPOIDENTpthisUsuarioNovedad.getTipoIdentificacionCD().equalsObject(usuarioNovedadTCAMBIARTIPOIDENTptpevcTipoIdentificacion));
+        boolean ifCondition1 = !Utilities.isEqual(usuarioNovedadTCAMBIARTIPOIDENTpthisUsuarioNovedad.getTipoIdentificacionCD(), usuarioNovedadTCAMBIARTIPOIDENTptpevcTipoIdentificacion);
         if (ifCondition1) {
             /* Action 10: IF (EXIST (TipoIdentificacionCD) = true) */
             boolean ifCondition10 = repository.assocOperator031(usuarioNovedadTCAMBIARTIPOIDENTpthisUsuarioNovedad).equals(true);
@@ -2823,7 +2824,7 @@ public class UsuarioNovedadService extends AbstractService {
         usuarioNovedadSrv.modificarImplementation(step1Request);
 
         /* Action 2: IF (TipoIdentificacion <> ptTipoIdentificacion) */
-        boolean ifCondition2 = !(usuarioNovedadTMODIFICARMANUALpthisUsuarioNovedad.getTipoIdentificacion().equalsObject(usuarioNovedadTMODIFICARMANUALptTipoIdentificacion));
+        boolean ifCondition2 = !Utilities.isEqual(usuarioNovedadTMODIFICARMANUALpthisUsuarioNovedad.getTipoIdentificacion(), usuarioNovedadTMODIFICARMANUALptTipoIdentificacion);
         if (ifCondition2) {
             /* Action 20: IF (EXIST (TipoIdentificacion) = true) */
             boolean ifCondition20 = repository.assocOperator034(usuarioNovedadTMODIFICARMANUALpthisUsuarioNovedad).equals(true);
@@ -2840,7 +2841,7 @@ public class UsuarioNovedadService extends AbstractService {
         }
 
         /* Action 3: IF (Parentesco <> ptParentesco) */
-        boolean ifCondition3 = !(usuarioNovedadTMODIFICARMANUALpthisUsuarioNovedad.getParentesco().equalsObject(usuarioNovedadTMODIFICARMANUALptParentesco));
+        boolean ifCondition3 = !Utilities.isEqual(usuarioNovedadTMODIFICARMANUALpthisUsuarioNovedad.getParentesco(), usuarioNovedadTMODIFICARMANUALptParentesco);
         if (ifCondition3) {
             /* Action 30: IF (EXIST (Parentesco) = true) */
             boolean ifCondition30 = repository.assocOperator035(usuarioNovedadTMODIFICARMANUALpthisUsuarioNovedad).equals(true);
