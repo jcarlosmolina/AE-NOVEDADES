@@ -74,8 +74,8 @@ public class GlobalServicesService extends AbstractService {
 
         request.checkArguments();
 		String oaTextoErrores = "";
-		Long oaErrores = 0L;
-		Long oaProcesados = 0L;
+		long oaErrores = 0L;
+		long oaProcesados = 0L;
         try {
         	
         	

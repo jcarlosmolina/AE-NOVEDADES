@@ -5158,7 +5158,11 @@ public class SolicitudNovedadService extends AbstractService {
 			reqCrearUsu.setUsuarioNovedadTCREARDESDECOREptpatrGenero(persona.getBasicData().getGender());
 			reqCrearUsu.setUsuarioNovedadTCREARDESDECOREptpatrMotivoEstado(motivo);
 			reqCrearUsu.setUsuarioNovedadTCREARDESDECOREptpatrNumIdentificacion(numIndentificacion);
-			reqCrearUsu.setUsuarioNovedadTCREARDESDECOREptpatrNumUsuario(Long.valueOf(contrato.getIdentifierPorType(patient.getIdentifier(), "NUM_USR")));
+			try {
+			    reqCrearUsu.setUsuarioNovedadTCREARDESDECOREptpatrNumUsuario(Long.valueOf(contrato.getIdentifierPorType(patient.getIdentifier(), "NUM_USR")));
+			} catch (NumberFormatException e) {
+				throw new ModelException("Incorrecto identificador por tipo NUM_USR");
+			}
 			reqCrearUsu.setUsuarioNovedadTCREARDESDECOREptpatrPrimerApellido(persona.getBasicData().getName().getName().getFirstFamily());
 			reqCrearUsu.setUsuarioNovedadTCREARDESDECOREptpatrPrimerNombre(persona.getBasicData().getName().getName().getFirstName());
 			reqCrearUsu.setUsuarioNovedadTCREARDESDECOREptpatrSegundoApellido(persona.getBasicData().getName().getName().getSecondFamily());
@@ -6085,8 +6089,8 @@ public class SolicitudNovedadService extends AbstractService {
     		
     		// Asignamos los valores del contrato a la solicitud
     		
-    		Boolean contratoActivo = "LIQUIDADO".equalsIgnoreCase(contrato.getContract().getStatus());        	
-        	Boolean esFamiliar = "FAMILIAR".equalsIgnoreCase(contrato.getContract().getScope());
+    		boolean contratoActivo = "LIQUIDADO".equalsIgnoreCase(contrato.getContract().getStatus());        	
+        	boolean esFamiliar = "FAMILIAR".equalsIgnoreCase(contrato.getContract().getScope());
         	
         	String primerNombre = "";
         	String segundoNombre = "";

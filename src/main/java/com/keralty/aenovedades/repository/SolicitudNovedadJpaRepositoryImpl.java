@@ -60,10 +60,13 @@ public class SolicitudNovedadJpaRepositoryImpl extends AbstractRepository implem
     	String sqlSentence = "select " + nombreSecuencia + ".nextVal from dual";
     	Query query = em.createNativeQuery(sqlSentence);
     	Object resultado = query.getSingleResult();
-    	
-    	if (resultado != null){
-    		valorSec = Long.valueOf(resultado.toString());
-    				// ((BigDecimal)resultado).longValue();
+
+    	try {
+    		if (resultado != null){
+    			valorSec = Long.valueOf(resultado.toString());
+    		}
+    	} catch (NumberFormatException e) {
+    		return valorSec;
     	}
     	return valorSec;
     }
