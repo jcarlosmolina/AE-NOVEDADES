@@ -17,6 +17,8 @@ import java.util.List;
 
 public interface SolicitudNovedadJpaRepositoryCustom {
 
+    Long getSiguienteNumRadicado(boolean esVoluntario);
+
     List<SolicitudNovedad> solveQuery(SQLSelect query);
     
     List<SolicitudNovedad> solveQuery(SQLSelect query, int pageSize, int pageNumber);

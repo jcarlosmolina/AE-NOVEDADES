@@ -42,10 +42,31 @@ import com.keralty.aenovedades.sqlutils.SQLWhereOperandPathInstance;
 import com.keralty.aenovedades.sqlutils.TypedQueryBuilder;
 import com.keralty.aenovedades.utils.Agent;
 import jakarta.inject.Inject;
+import jakarta.persistence.Query;
+
 import java.util.Collection;
 import java.util.List;
 
 public class SolicitudNovedadJpaRepositoryImpl extends AbstractRepository implements SolicitudNovedadJpaRepositoryCustom {
+
+	@Override
+	public Long getSiguienteNumRadicado(boolean esVoluntario) {
+    	Long valorSec = 1L;
+    	String nombreSecuencia = "SolNov_NumRadicado_Sequence";
+
+    	if (esVoluntario) {
+    		nombreSecuencia = "SolNov_NumRadEPS_Sequence";
+    	}
+    	String sqlSentence = "select " + nombreSecuencia + ".nextVal from dual";
+    	Query query = em.createNativeQuery(sqlSentence);
+    	Object resultado = query.getSingleResult();
+    	
+    	if (resultado != null){
+    		valorSec = Long.valueOf(resultado.toString());
+    				// ((BigDecimal)resultado).longValue();
+    	}
+    	return valorSec;
+    }
 
     @Inject
     public SolicitudNovedadJpaRepositoryImpl(Agent agent, UserFunctions userFunctionsSrv) {

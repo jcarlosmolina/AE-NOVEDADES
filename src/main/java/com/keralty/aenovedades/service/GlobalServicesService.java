@@ -73,19 +73,44 @@ public class GlobalServicesService extends AbstractService {
         byte[] oGSOLNOVSETTRAMITADOptFichero = request.getOGSOLNOVSETTRAMITADOptFichero();
 
         request.checkArguments();
-
+		String oaTextoErrores = "";
+		Long oaErrores = 0L;
+		Long oaProcesados = 0L;
         try {
-            for(SolicitudNovedad step1Entity : globalServicesRepository.assocOperator137()) {
+        	
+        	
+        	String datos = new String(oGSOLNOVSETTRAMITADOptFichero);
+        	datos = datos.replaceAll("\r", "");
+        	datos = datos.replaceAll("\n", "");
+        	String[] arrayDatos = datos.split(",");
+        	
+        	for(String numRadicado : arrayDatos) {
+        		oaProcesados++;
                 try {
-                    com.keralty.aenovedades.viewmodel.globalservices.siu.TGSOLNOVSETTRARequest step1Request = new com.keralty.aenovedades.viewmodel.globalservices.siu.TGSOLNOVSETTRARequest();
-                    step1Request.setTGSOLNOVSETTRAptNumRadicado(Long.valueOf(1));
-                    com.keralty.aenovedades.viewmodel.globalservices.siu.TGSOLNOVSETTRAResponse step1Response = globalServicesSrv.tGSOLNOVSETTRATxn(step1Request);
-                    response.setOGSOLNOVSETTRAMITADOoaNumProcesados(step1Response.getTGSOLNOVSETTRAptoaNumProcesados());
-                    response.setOGSOLNOVSETTRAMITADOoaNumErrores(step1Response.getTGSOLNOVSETTRAptoaNumErrores());
-                    response.setOGSOLNOVSETTRAMITADOoaErrores(step1Response.getTGSOLNOVSETTRAptoaErrores());
-                } catch (Exception e) { }
-            }
-        } catch (Exception e) { }
+                  com.keralty.aenovedades.viewmodel.globalservices.siu.TGSOLNOVSETTRARequest stepTramitado = new com.keralty.aenovedades.viewmodel.globalservices.siu.TGSOLNOVSETTRARequest();
+                  stepTramitado.setTGSOLNOVSETTRAptNumRadicado(Long.valueOf(numRadicado));
+                  com.keralty.aenovedades.viewmodel.globalservices.siu.TGSOLNOVSETTRAResponse stepTramitadoResponse = globalServicesSrv.tGSOLNOVSETTRATxn(stepTramitado);
+                	
+                    
+                    if (stepTramitadoResponse.getTGSOLNOVSETTRAptoaNumProcesados() == null ||
+                    		stepTramitadoResponse.getTGSOLNOVSETTRAptoaNumProcesados() == 0L) {
+                		oaErrores++;
+                		oaTextoErrores += numRadicado + " : Numero de radicado no encontrado" + "\n";
+                    }
+                    
+                } catch (Exception e) {
+                	oaErrores++;
+                	oaTextoErrores += numRadicado + " : " + e.getMessage() + "\n";
+                }
+        	}            
+        } catch (Exception e) {
+    		org.slf4j.LoggerFactory.getLogger(this.getClass().getName()).error("Asignacion solicitudes\n" + e.getMessage());
+			oaTextoErrores += "Error procesando fichero\n";
+        }        
+
+        response.setOGSOLNOVSETTRAMITADOoaErrores(oaTextoErrores);
+        response.setOGSOLNOVSETTRAMITADOoaNumErrores(oaErrores);
+        response.setOGSOLNOVSETTRAMITADOoaNumProcesados(oaProcesados);
         return response;
     }
 
