@@ -1,0 +1,21 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ae-novedades
+  annotations:
+    haproxy.router.openshift.io/timeout: "3m"
+  labels:
+    app: ae-novedades
+    app.kubernetes.io/component: ae-novedades
+    app.kubernetes.io/instance: ae-novedades
+    app.kubernetes.io/name: ae-novedades
+    app.kubernetes.io/part-of: ae-app
+    app.openshift.io/runtime: ae-novedades
+spec:
+  host: ae-novedades-soporte-colsanitas-dev.apps.rm3.7wse.p1.openshiftapps.com
+  to:
+    kind: Service
+    name: ae-novedades
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
