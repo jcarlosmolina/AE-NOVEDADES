@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GlobalServicesJpaRepository {
 
-    Collection<SolicitudNovedad> assocOperator137() throws SystemException;
+    Collection<SolicitudNovedad> assocOperator131() throws SystemException;
 
-    Collection<SolicitudNovedad> assocOperator138(Long tGSOLNOVSETTRAptNumRadicado) throws SystemException;
+    Collection<SolicitudNovedad> assocOperator132(Long tGSOLNOVSETTRAptNumRadicado) throws SystemException;
 
     void refreshEntity(Object object);
 }

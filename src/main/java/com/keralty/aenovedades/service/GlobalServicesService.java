@@ -155,7 +155,7 @@ public class GlobalServicesService extends AbstractService {
 
         request.checkArguments();
 
-        for(SolicitudNovedad step1Entity : globalServicesRepository.assocOperator138(tGSOLNOVSETTRAptNumRadicado)) {
+        for(SolicitudNovedad step1Entity : globalServicesRepository.assocOperator132(tGSOLNOVSETTRAptNumRadicado)) {
             com.keralty.aenovedades.viewmodel.solicitudnovedad.siu.TMARCARTRAMITADARequest step1Request = new com.keralty.aenovedades.viewmodel.solicitudnovedad.siu.TMARCARTRAMITADARequest();
             step1Request.setSolicitudNovedadTMARCARTRAMITADApthisSolicitudNovedadInstance(step1Entity);
             com.keralty.aenovedades.viewmodel.solicitudnovedad.siu.TMARCARTRAMITADAResponse step1Response = solicitudNovedadSrv.tMARCARTRAMITADAImplementation(step1Request);

@@ -689,7 +689,7 @@ public class Funcionario extends AbstractAppEntity {
             value = funcionariodrvNombreCompletoDerivations();
         } catch (Exception e) {
             value = "";
-            org.slf4j.LoggerFactory.getLogger(this.getClass()).error("Definition Class: Funcionario, Attribute: funcionariodrvNombreCompleto");
+            org.slf4j.LoggerFactory.getLogger(this.getClass()).debug("Definition Class: Funcionario, Attribute: funcionariodrvNombreCompleto");
         }
         return (value == null ? null : value.trim());
     }
@@ -834,7 +834,7 @@ public class Funcionario extends AbstractAppEntity {
             value = funcionariodrvNomJefeDerivations();
         } catch (Exception e) {
             value = "";
-            org.slf4j.LoggerFactory.getLogger(this.getClass()).error("Definition Class: Funcionario, Attribute: funcionariodrvNomJefe");
+            org.slf4j.LoggerFactory.getLogger(this.getClass()).debug("Definition Class: Funcionario, Attribute: funcionariodrvNomJefe");
         }
         return (value == null ? null : value.trim());
     }
@@ -853,7 +853,7 @@ public class Funcionario extends AbstractAppEntity {
             value = funcionariodrvNomAgenciaDerivations();
         } catch (Exception e) {
             value = "";
-            org.slf4j.LoggerFactory.getLogger(this.getClass()).error("Definition Class: Funcionario, Attribute: funcionariodrvNomAgencia");
+            org.slf4j.LoggerFactory.getLogger(this.getClass()).debug("Definition Class: Funcionario, Attribute: funcionariodrvNomAgencia");
         }
         return (value == null ? null : value.trim());
     }
@@ -966,7 +966,7 @@ Indica el número de solicitudes no terminadas que tiene asignadas el usuario. S
             value = funcionariodrvEsAsesorIntegralDerivations();
         } catch (Exception e) {
             value = false;
-            org.slf4j.LoggerFactory.getLogger(this.getClass()).error("Definition Class: Funcionario, Attribute: funcionariodrvEsAsesorIntegral");
+            org.slf4j.LoggerFactory.getLogger(this.getClass()).debug("Definition Class: Funcionario, Attribute: funcionariodrvEsAsesorIntegral");
         }
         return value;
     }
@@ -985,7 +985,7 @@ Indica el número de solicitudes no terminadas que tiene asignadas el usuario. S
             value = funcionariodrvEsAfiliacionDerivations();
         } catch (Exception e) {
             value = false;
-            org.slf4j.LoggerFactory.getLogger(this.getClass()).error("Definition Class: Funcionario, Attribute: funcionariodrvEsAfiliacion");
+            org.slf4j.LoggerFactory.getLogger(this.getClass()).debug("Definition Class: Funcionario, Attribute: funcionariodrvEsAfiliacion");
         }
         return value;
     }
